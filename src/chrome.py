@@ -34,7 +34,7 @@ class BrowserChrome:
         'home': Keys.HOME
     }
 
-    def __init__(self, xpath):
+    def __init__(self, map):
         """
             Construtor da classe
 
@@ -53,7 +53,7 @@ class BrowserChrome:
         self.__path_webdriver = self.dir_path + '/webdrivers/chromedriver_' + self.used_version_chrome + '.exe'
         self.__initialized = strftime('%X %x')
         self.browser = Chrome(executable_path=self.__path_webdriver, options=self.__get_options())
-        self.xpath = xpath
+        self.map = map
         self.seconds_to_except = 6
         self.console_log = []
 
