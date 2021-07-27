@@ -43,11 +43,4 @@ class Actions:
 
     def run_search(self):
         bar = self.browser.get_element(by='css', path='input[type="text"]')
-        steps = [
-            self.browser.click_keyboard(bar, 'baixo'),
-            self.browser.click_keyboard(bar, 'enter')
-        ]
-        if False in steps:
-            return False
-        else:
-            return True
+        return self.browser.click_keyboard(bar, 'enter')
