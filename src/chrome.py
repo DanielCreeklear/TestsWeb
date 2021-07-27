@@ -55,6 +55,7 @@ class BrowserChrome:
         self.browser = Chrome(executable_path=self.__path_webdriver, options=self.__get_options())
         self.map = map
         self.seconds_to_except = 6
+        self.attempts_max = 10
         self.console_log = []
 
     def to_url(self, url, wait=0):
@@ -228,7 +229,7 @@ class BrowserChrome:
         else:
             return True
 
-    def click_element(self, web_element):
+    def click_element(self, web_element, attempts=0):
         """
             Clica no objeto do web elemento caso ele seja encontrado
 
@@ -246,10 +247,18 @@ class BrowserChrome:
                 web_element.click()
 
         except ElementNotInteractableException:
-            print('Não foi possível clicar no elemento!')
-            return False
+            print('Problemas para clicar no elemento!')
+            if attempts > self.attempts_max:
+                return False
+            else:
+                return self.click_element(web_element, attempts + 1)
 
         except ElementClickInterceptedException:
+            print('Problemas para clicar no elemento!')
+            if attempts > self.attempts_max:
+                return False
+            else:
+                return self.click_element(web_element, attempts + 1)
             return False
 
         else:
