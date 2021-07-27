@@ -34,7 +34,7 @@ class BrowserChrome:
         'home': Keys.HOME
     }
 
-    def __init__(self, map):
+    def __init__(self, map=None):
         """
             Construtor da classe
 
