@@ -16,7 +16,7 @@ class Actions:
         """
             Redirects browser to google site
         """
-        self.browser.to_url(get_json('../maps/urls.json')['google-main'])
+        self.browser.to_url(get_json('./maps/urls.json')['google-main'])
 
     def click_in_html(self):
         html = self.browser.get_element(by='xpath', path='html')
